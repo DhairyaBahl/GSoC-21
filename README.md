@@ -58,7 +58,7 @@ Removed Gtk::Main
 Gtk::HScale
 ```
 
-Classes that were being migrated were ( work in progress ) : 
+Classes that are being migrated were ( work in progress ) : 
 
 ```
 Gtk::UIManager
