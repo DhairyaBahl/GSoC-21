@@ -16,7 +16,7 @@ This summer, I was pleased to get selected for Google Summer of Code'21 🚀 und
 
 ## 📙 Abstract
 
-Synfig is currently working on GTK 3.0 but some of the widgets of Synfig are still using the deprecated classes of GTK 2.0 . My task will be to find those classes and replace them with their appropriate alternative from GTK 3.0 which will make the code much more effective and will make it easier for us to later switch to upcoming GTK 4.0.
+Synfig uses widgets from version 3.0 which are deprecated in version 3.14 (3.10). My task will be to find those classes and replace them with their appropriate alternative from GTK 3.0 which will make the code much more effective and will make it easier for us to later switch to upcoming GTK 4.0.
 
 <div  align="center">
 
@@ -35,6 +35,8 @@ In order to continue with this project, I had to learn using GNU Debugger (gdb).
 I learnt the basics of gdb i.e. how breakpoints works, how to delete breakpoints and how to print and display variable values and some other basic stuff before moving onto the actual codebase.
 
 Now after having some decent experience with debugging, I then decided to learn more about Synfig's codebase and was trying to become familiar with it.
+
+Although learning GDB is totally optional for those who are willing to contribute to this project idea. It wasn't of much use to me but still learning it will be a plus in later stages of development in any Cpp based project 😄.
 
 ## 💻 Coding Period Begins
 
@@ -58,6 +60,8 @@ Removed Gtk::Main
 Gtk::HScale
 ```
 
+To summarize, I replaced deprecated Gtk GUI components with the perfect updated alternative without changing the GUI behaviour and without any loss of functionality.
+
 Classes that are being migrated were ( work in progress ) : 
 
 ```
@@ -65,12 +69,21 @@ Gtk::UIManager
 
 Gtk::StockID
 
-Gtk::IconFactory
+Gtk::Action
+
+Gtk::ActionGroup
 ```
+
+To Summarize, we still have to work on these remaining classes. I am currently working on Gtk::Action and Gtk::ActionGroup and they have to be replaced by Gio::SimpleAction and Gio::SimpleActionGroup respectively but its not that easy in this case. This migration is not independent i.e. it is dependent on other deprecated classes as well.
+
+StockID is only used with Gtk::Action but it is not used with Gio::SimpleAction. So, we have to remove it side-by-side and have to find perfect alternative for the same.
+Same is the case with Gtk::UIManager as well which have to be replaced to Gtk::Builder simultaneously.
 
 ## 🚧 Challenges that I faced
 
-During this period, I faced a lot of challenges. The very first challenge was to understand the overall Synfig's code. It took me few weeks to get the hang of code but eventually, I was able to understand what's happening under the hood. 
+During this period, I faced a lot of challenges. The very first challenge was to understand the overall Synfig's code. It took me few weeks to get the hang of code but eventually, I was able to understand what's happening under the hood. After becoming familiar with the codebase and little bit knowledge of synfig, then I started contributing to my project idea.
+
+This was the best resource for me to become familiar with the codebase: https://synfig-docs-dev.readthedocs.io/en/latest/common/structure.html
 
 Later when I had to migrate to Gtk::Application from Gtk::Main, it was a challenge itself. I learnt about both of these from the docs ! Tried to make my own apps using Gtkmm, experimented on them and then later implemented the same code in Synfig.
 
